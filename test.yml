@@ -1,0 +1,15 @@
+---
+- name: MySQL
+  sudo: yes
+  hosts: mysql
+  roles:
+    - { role: augustohp.mysql }
+
+- name: PHP
+  sudo: yes
+  hosts: web
+  roles:
+    - { role: augustohp.php, hrw_options.enable_fpm: yes, php_fpm_default_chdir: "/var/www/default" }
+    - { role: jdauphant.nginx, nginx_user: "www-data" }
+
+# ex: ft=ansible et ts=2 sw=2
